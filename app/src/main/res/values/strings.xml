@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">FoodOrder</string>
+    <string name="size_label">Size</string>
+    <string name="size_large">Large</string>
+    <string name="size_medium">Medium</string>
+    <string name="tortilla_label">Tortilla</string>
+    <string name="tortilla_corn">Corn</string>
+    <string name="tortilla_flour">Flour</string>
+    <string name="fillings_label">Fillings</string>
+    <string name="fillings_beef">Beef</string>
+    <string name="fillings_chicken">Chicken</string>
+    <string name="fillings_white_fish">White Fish</string>
+    <string name="fillings_cheese">Cheese</string>
+    <string name="fillings_sea_food">Sea food</string>
+    <string name="fillings_rice">Rice</string>
+    <string name="fillings_beans">Beans</string>
+    <string name="fillings_pico_de_gallo">Pico de Gallo</string>
+    <string name="fillings_guacamole">Guacamole</string>
+    <string name="fillings_lbt">LBT</string>
+    <string name="beverage_label">Beverage</string>
+    <string name="beverage_soda">Soda</string>
+    <string name="beverage_cerveza">Cerveza</string>
+    <string name="beverage_margarita">Margarita</string>
+    <string name="beverage_tequila">Tequila</string>
+    <string name="place_order_button_label">Place your order</string>
 </resources>
