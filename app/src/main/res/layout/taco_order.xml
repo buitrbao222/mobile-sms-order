@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     android:padding="10dp"
     android:stretchColumns="*"
-    tools:context=".MainActivity">
+    tools:context=".TacoOrder">
 
 
     <LinearLayout
@@ -31,6 +31,7 @@
                 android:text="@string/size_label" />
 
             <RadioGroup
+                android:id="@+id/size_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -58,6 +59,7 @@
                 android:text="@string/tortilla_label" />
 
             <RadioGroup
+                android:id="@+id/tortilla_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -207,7 +209,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/place_order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
