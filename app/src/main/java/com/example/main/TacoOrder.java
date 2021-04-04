@@ -1,25 +1,24 @@
 package com.example.main;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.telephony.SmsManager;
 import android.widget.Toast;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 
@@ -64,11 +63,13 @@ public class TacoOrder extends AppCompatActivity {
                 + newLine
                 + "BEVERAGES: " + String.join(", ", beverages);
 
-        smsManager.sendTextMessage(phoneNumber, null,
+        smsManager.sendTextMessage(
+                phoneNumber,
+                null,
                 content,
-                null, null);
-
-        centerToast("Your order was placed successfully!");
+                null,
+                null
+        );
     }
 
     protected String getCheckedRadioText(@IdRes int radioGroupId) {
@@ -79,7 +80,7 @@ public class TacoOrder extends AppCompatActivity {
     }
 
     protected ArrayList<String> getCheckedCheckboxText(@IdRes int linearLayoutId) {
-        LinearLayout linearLayout = (LinearLayout) findViewById(linearLayoutId);
+        LinearLayout linearLayout = findViewById(linearLayoutId);
 
         ArrayList<String> texts = new ArrayList<String>();
 
@@ -105,9 +106,9 @@ public class TacoOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.taco_order);
 
-        Button placeOrderButton = (Button) findViewById(R.id.place_order_button);
+        Button placeOrderButton = findViewById(R.id.place_order_button);
 
-        placeOrderButton.setOnClickListener((View.OnClickListener) v -> {
+        placeOrderButton.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.SEND_SMS) !=
                     PackageManager.PERMISSION_GRANTED) {
