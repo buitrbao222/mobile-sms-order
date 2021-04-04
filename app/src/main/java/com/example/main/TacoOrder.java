@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -17,12 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 
-public class TacoOrder extends AppCompatActivity {
+public class TacoOrder extends BaseActivity {
     private static final int SMS_PERMISSION_REQUEST_CODE = 1;
 
     public void centerToast(String content) {

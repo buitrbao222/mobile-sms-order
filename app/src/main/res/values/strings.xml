@@ -23,4 +23,7 @@
     <string name="beverage_margarita">Margarita</string>
     <string name="beverage_tequila">Tequila</string>
     <string name="place_order_button_label">Place your order</string>
+    <string name="menu_item_taco_order">Taco Order</string>
+    <string name="menu_item_cooking_book">Cooking Book</string>
+    <string name="menu_item_landmarks">Landmarks</string>
 </resources>
