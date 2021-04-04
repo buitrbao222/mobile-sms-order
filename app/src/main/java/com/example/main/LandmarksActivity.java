@@ -1,11 +1,14 @@
 package com.example.main;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class CookingBook extends BaseActivity {
+public class LandmarksActivity extends BaseActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cooking_book);
+        setContentView(R.layout.landmarks_activity);
     }
 }
