@@ -25,64 +25,17 @@ import java.util.ArrayList;
 public class TacoOrderActivity extends BaseActivity {
     private static final int SMS_PERMISSION_REQUEST_CODE = 1;
 
-    public void centerToast(String content) {
-        Toast toast = Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == SMS_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                this.placeOrder();
-            } else {
-                centerToast("Need SMS permission to place an order!");
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void placeOrder() {
-        String size = getCheckedRadioText(R.id.size_group);
-        String tortilla = getCheckedRadioText(R.id.tortilla_group);
-        ArrayList<String> fillings = getCheckedCheckboxText(R.id.fillings_group);
-        ArrayList<String> beverages = getCheckedCheckboxText(R.id.beverage_group);
-
-        SmsManager smsManager = SmsManager.getDefault();
-        String phoneNumber = "5556";
-        String newLine = System.getProperty("line.separator");
-        String content = "--- TACO ORDER ---"
-                + newLine
-                + "SIZE: " + size
-                + newLine
-                + "TORTILLA: " + tortilla
-                + newLine
-                + "FILLINGS: " + String.join(", ", fillings)
-                + newLine
-                + "BEVERAGES: " + String.join(", ", beverages);
-
-        smsManager.sendTextMessage(
-                phoneNumber,
-                null,
-                content,
-                null,
-                null
-        );
-    }
-
     protected String getCheckedRadioText(@IdRes int radioGroupId) {
-        RadioGroup radioGroup = (RadioGroup) findViewById(radioGroupId);
+        RadioGroup radioGroup = findViewById(radioGroupId);
         int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-        RadioButton checkedRadioButton = (RadioButton) findViewById(checkedRadioButtonId);
+        RadioButton checkedRadioButton = findViewById(checkedRadioButtonId);
         return checkedRadioButton.getText().toString();
     }
 
     protected ArrayList<String> getCheckedCheckboxText(@IdRes int linearLayoutId) {
         LinearLayout linearLayout = findViewById(linearLayoutId);
 
-        ArrayList<String> texts = new ArrayList<String>();
+        ArrayList<String> texts = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
             LinearLayout ll = (LinearLayout) linearLayout.getChildAt(i);
@@ -109,15 +62,35 @@ public class TacoOrderActivity extends BaseActivity {
         Button placeOrderButton = findViewById(R.id.place_order_button);
 
         placeOrderButton.setOnClickListener(v -> {
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.SEND_SMS) !=
-                    PackageManager.PERMISSION_GRANTED) {
-                // Permission not yet granted. Request permissions
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        SMS_PERMISSION_REQUEST_CODE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                // SMS permission not granted. Request permissions
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_REQUEST_CODE);
             } else {
-                this.placeOrder();
+                String size = getCheckedRadioText(R.id.size_group);
+                String tortilla = getCheckedRadioText(R.id.tortilla_group);
+                ArrayList<String> fillings = getCheckedCheckboxText(R.id.fillings_group);
+                ArrayList<String> beverages = getCheckedCheckboxText(R.id.beverage_group);
+
+                SmsManager smsManager = SmsManager.getDefault();
+                String phoneNumber = "5556";
+                String newLine = System.getProperty("line.separator");
+                String content = "--- TACO ORDER ---"
+                        + newLine
+                        + "SIZE: " + size
+                        + newLine
+                        + "TORTILLA: " + tortilla
+                        + newLine
+                        + "FILLINGS: " + String.join(", ", fillings)
+                        + newLine
+                        + "BEVERAGES: " + String.join(", ", beverages);
+
+                smsManager.sendTextMessage(
+                        phoneNumber,
+                        null,
+                        content,
+                        null,
+                        null
+                );
             }
         });
     }

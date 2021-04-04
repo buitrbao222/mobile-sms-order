@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.main">
+          package="com.example.main">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrder">
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".RecipeDetailsActivity" />
+        <activity android:name=".BaseActivity" />
         <activity android:name=".LandmarksActivity" />
         <activity android:name=".CookingBookActivity" />
         <activity android:name=".TacoOrderActivity">
